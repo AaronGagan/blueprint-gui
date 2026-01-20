@@ -1,0 +1,175 @@
+Relationship,Element 1,Element 2
+Functional Flow,A - SRR - Requirements Development,A - ASR - Initial Analysis
+Functional Flow,A - SFR - Solution Selection,A - SRR - Requirements Development
+Functional Flow,B - SRR - Architecture Definition,A - SRR - Requirements Development
+Functional Flow,A - SFR - Solution Selection,B - SFR - Detailed Analysis
+Functional Flow,B - SFR - Develop Internal Geometry,B - SFR - Develop External Geometry
+Functional Flow,B - SFR - Develop External Geometry,B - SFR - Develop Internal Geometry
+Functional Flow,B - SFR - Detailed Analysis,B - SRR - Architecture Definition
+Interfacing Capability,Capability Pillar Bravo,Capability Pillar Alpha
+Interfacing Capability,Capability Pillar Alpha,Capability Pillar Bravo
+Associated Gate to Function,A - ASR - Initial Analysis,ASR  Gate
+Associated Gate to Function,B - ASR - Create Management Plan,ASR  Gate
+Associated Gate to Function,A - SFR - Solution Selection,SFR Gate
+Associated Gate to Function,B - SFR - Detailed Analysis,SFR Gate
+Associated Gate to Function,B - SFR - Develop External Geometry,SFR Gate
+Associated Gate to Function,B - SFR - Develop Internal Geometry,SFR Gate
+Associated Gate to Function,A - SRR - Requirements Development,SRR  Gate
+Associated Gate to Function,B - SRR - Architecture Definition,SRR  Gate
+Realises Capability,Capability Pillar Alpha,A - ASR - Initial Analysis
+Realises Capability,Capability Pillar Alpha,A - SFR - Solution Selection
+Realises Capability,Capability Pillar Alpha,A - SRR - Requirements Development
+Realises Capability,Capability Pillar Bravo,B - ASR - Create Management Plan
+Realises Capability,Capability Pillar Bravo,B - SFR - Detailed Analysis
+Realises Capability,Capability Pillar Bravo,B - SFR - Develop External Geometry
+Realises Capability,Capability Pillar Bravo,B - SFR - Develop Internal Geometry
+Realises Capability,Capability Pillar Bravo,B - SRR - Architecture Definition
+Type of,Requirements Set,Customer Requirements
+Type of,Requirements Set,Design Requirements
+Instance Of,Customer Requirements,"Customer Requirements, Customer, ASR, [FINAL]"
+Instance Of,Design Requirements,"Design Requirements, B, SFR, [FINAL]"
+Instance Of,Analysis Dataset,"Detailed Analysis Dataset, A, SFR, [FINAL]"
+Instance Of,Analysis Dataset,"Detailed Analysis Dataset, B, SFR, [FINAL]"
+Instance Of,Analysis Report,"Detailed Analysis Report, B, SFR, [FINAL]"
+Instance Of,External Geometry,"External Geometry, B, SFR, [DRAFT]"
+Instance Of,Analysis Dataset,"Initial Analysis Dataset, A, ASR, [FINAL]"
+Instance Of,Analysis Report,"Initial Analysis Report, A, ASR, [FINAL]"
+Instance Of,Internal Geometry,"Internal Geometry, B,  SFR, [FINAL]"
+Instance Of,Logical Architecture Model,"Logical Architecture Model, B, SRR, [FINAL]"
+Instance Of,Management Plan,"Management Plan, B, ASR, [FINAL]"
+Instance Of,Requirements Set,"Requirements Set, A, SRR, [FINAL]"
+Instance Of,Solution Downselection,"Solution Downselection, A, SFR [FINAL]"
+Realises Service,Bulk Analysis Data Management Service,Product Lifecycle Management Tool
+Realises Service,Document Management Service,Product Lifecycle Management Tool
+Associated Gate to Representation,"Customer Requirements, Customer, ASR, [FINAL]",ASR  Gate
+Associated Gate to Representation,"Initial Analysis Dataset, A, ASR, [FINAL]",ASR  Gate
+Associated Gate to Representation,"Initial Analysis Report, A, ASR, [FINAL]",ASR  Gate
+Associated Gate to Representation,"Management Plan, B, ASR, [FINAL]",ASR  Gate
+Associated Gate to Representation,"Design Requirements, B, SFR, [FINAL]",SFR Gate
+Associated Gate to Representation,"Detailed Analysis Dataset, A, SFR, [FINAL]",SFR Gate
+Associated Gate to Representation,"Detailed Analysis Dataset, B, SFR, [FINAL]",SFR Gate
+Associated Gate to Representation,"Detailed Analysis Report, B, SFR, [FINAL]",SFR Gate
+Associated Gate to Representation,"External Geometry, B, SFR, [DRAFT]",SFR Gate
+Associated Gate to Representation,"Internal Geometry, B,  SFR, [FINAL]",SFR Gate
+Associated Gate to Representation,"Solution Downselection, A, SFR [FINAL]",SFR Gate
+Associated Gate to Representation,"Logical Architecture Model, B, SRR, [FINAL]",SRR  Gate
+Associated Gate to Representation,"Requirements Set, A, SRR, [FINAL]",SRR  Gate
+Associated Capability,"Detailed Analysis Dataset, A, SFR, [FINAL]",Capability Pillar Alpha
+Associated Capability,"Initial Analysis Dataset, A, ASR, [FINAL]",Capability Pillar Alpha
+Associated Capability,"Initial Analysis Report, A, ASR, [FINAL]",Capability Pillar Alpha
+Associated Capability,"Requirements Set, A, SRR, [FINAL]",Capability Pillar Alpha
+Associated Capability,"Solution Downselection, A, SFR [FINAL]",Capability Pillar Alpha
+Associated Capability,"Design Requirements, B, SFR, [FINAL]",Capability Pillar Bravo
+Associated Capability,"Detailed Analysis Dataset, B, SFR, [FINAL]",Capability Pillar Bravo
+Associated Capability,"Detailed Analysis Report, B, SFR, [FINAL]",Capability Pillar Bravo
+Associated Capability,"External Geometry, B, SFR, [DRAFT]",Capability Pillar Bravo
+Associated Capability,"Internal Geometry, B,  SFR, [FINAL]",Capability Pillar Bravo
+Associated Capability,"Logical Architecture Model, B, SRR, [FINAL]",Capability Pillar Bravo
+Associated Capability,"Management Plan, B, ASR, [FINAL]",Capability Pillar Bravo
+Uses Service,"Detailed Analysis Dataset, B, SFR, [FINAL]",Bulk Analysis Data Management Service
+Uses Service,"Initial Analysis Report, A, ASR, [FINAL]",Bulk Analysis Data Management Service
+Uses Service,"Detailed Analysis Dataset, A, SFR, [FINAL]",Detailed Analysis Service
+Uses Service,"Detailed Analysis Dataset, B, SFR, [FINAL]",Detailed Analysis Service
+Uses Service,"Detailed Analysis Report, B, SFR, [FINAL]",Detailed Analysis Service
+Uses Service,"Initial Analysis Report, A, ASR, [FINAL]",Document Management Service
+Uses Service,"Management Plan, B, ASR, [FINAL]",Document Management Service
+Uses Service,"Solution Downselection, A, SFR [FINAL]",Document Management Service
+read,"Customer Requirements, Customer, ASR, [FINAL]",A - ASR - Initial Analysis
+write,"Initial Analysis Dataset, A, ASR, [FINAL]",A - ASR - Initial Analysis
+write,"Initial Analysis Report, A, ASR, [FINAL]",A - ASR - Initial Analysis
+write,"Detailed Analysis Dataset, A, SFR, [FINAL]",A - SFR - Solution Selection
+read,"Detailed Analysis Report, B, SFR, [FINAL]",A - SFR - Solution Selection
+read,"Requirements Set, A, SRR, [FINAL]",A - SFR - Solution Selection
+write,"Solution Downselection, A, SFR [FINAL]",A - SFR - Solution Selection
+read,"Customer Requirements, Customer, ASR, [FINAL]",A - SRR - Requirements Development
+read,"Initial Analysis Dataset, A, ASR, [FINAL]",A - SRR - Requirements Development
+read,"Initial Analysis Report, A, ASR, [FINAL]",A - SRR - Requirements Development
+write,"Requirements Set, A, SRR, [FINAL]",A - SRR - Requirements Development
+read,"Customer Requirements, Customer, ASR, [FINAL]",B - ASR - Create Management Plan
+write,"Management Plan, B, ASR, [FINAL]",B - ASR - Create Management Plan
+write,"Detailed Analysis Dataset, B, SFR, [FINAL]",B - SFR - Detailed Analysis
+write,"Detailed Analysis Report, B, SFR, [FINAL]",B - SFR - Detailed Analysis
+read,"Logical Architecture Model, B, SRR, [FINAL]",B - SFR - Detailed Analysis
+read,"Management Plan, B, ASR, [FINAL]",B - SFR - Detailed Analysis
+write,"Design Requirements, B, SFR, [FINAL]",B - SFR - Develop External Geometry
+write,"External Geometry, B, SFR, [DRAFT]",B - SFR - Develop External Geometry
+read,"Internal Geometry, B,  SFR, [FINAL]",B - SFR - Develop External Geometry
+read,"Design Requirements, B, SFR, [FINAL]",B - SFR - Develop Internal Geometry
+read,"External Geometry, B, SFR, [DRAFT]",B - SFR - Develop Internal Geometry
+write,"Internal Geometry, B,  SFR, [FINAL]",B - SFR - Develop Internal Geometry
+write,"Logical Architecture Model, B, SRR, [FINAL]",B - SRR - Architecture Definition
+read,"Management Plan, B, ASR, [FINAL]",B - SRR - Architecture Definition
+read,"Requirements Set, A, SRR, [FINAL]",B - SRR - Architecture Definition
+Tool Realises Capability,Capability Pillar Bravo,Architecture Development Tool
+Tool Realises Capability,Capability Pillar Bravo,Computer Aided Design Tool
+Tool Realises Capability,Capability Pillar Alpha,Preliminary Analysis Tool
+Tool Services Function,A - ASR - Initial Analysis,Preliminary Analysis Tool
+Tool Services Function,A - ASR - Initial Analysis,Product Lifecycle Management Tool
+Tool Services Function,A - ASR - Initial Analysis,Requirements Management Tool
+Uses Component,"Logical Architecture Model, B, SRR, [FINAL]",Architecture Development Tool
+Uses Component,"External Geometry, B, SFR, [DRAFT]",Computer Aided Design Tool
+Uses Component,"Internal Geometry, B,  SFR, [FINAL]",Computer Aided Design Tool
+Uses Component,"Initial Analysis Dataset, A, ASR, [FINAL]",Preliminary Analysis Tool
+Uses Component,"Initial Analysis Report, A, ASR, [FINAL]",Preliminary Analysis Tool
+Uses Component,"Customer Requirements, Customer, ASR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Design Requirements, B, SFR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Detailed Analysis Dataset, A, SFR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Detailed Analysis Dataset, B, SFR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Detailed Analysis Report, B, SFR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"External Geometry, B, SFR, [DRAFT]",Product Lifecycle Management Tool
+Uses Component,"Initial Analysis Dataset, A, ASR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Initial Analysis Report, A, ASR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Internal Geometry, B,  SFR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Logical Architecture Model, B, SRR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Management Plan, B, ASR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Requirements Set, A, SRR, [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Solution Downselection, A, SFR [FINAL]",Product Lifecycle Management Tool
+Uses Component,"Customer Requirements, Customer, ASR, [FINAL]",Requirements Management Tool
+Uses Component,"Design Requirements, B, SFR, [FINAL]",Requirements Management Tool
+Uses Component,"Requirements Set, A, SRR, [FINAL]",Requirements Management Tool
+Realises Data,Analysis Dataset,Analysis Dataset Data Object
+Realises Data,Analysis Report,Analysis Report Data Object
+Realises Data,Customer Requirements,Customer Requirements
+Realises Data,Design Requirements,Design Requirements
+Realises Data,External Geometry,External Geometry
+Realises Data,Geometry,Geometry
+Realises Data,Internal Geometry,Internal Geometry
+Realises Data,Logical Architecture Model,Logical Architecture Model
+Realises Data,Management Plan,Management Plan
+Realises Data,Requirements Set,Requirements Set
+Realises Data,Solution Downselection,Solution Downselection
+data write,Analysis Dataset Data Object,Preliminary Analysis Tool
+data read,Analysis Plan,Preliminary Analysis Tool
+data read,Analysis Standards,Preliminary Analysis Tool
+data read,Analysis Dataset Data Object,Product Lifecycle Management Tool
+data write,Analysis Plan,Product Lifecycle Management Tool
+data read,Analysis Plan,Product Lifecycle Management Tool
+data write,Analysis Report Data Object,Product Lifecycle Management Tool
+data read,Analysis Report Data Object,Product Lifecycle Management Tool
+data write,Analysis Standards,Product Lifecycle Management Tool
+data write,Customer Requirements,Product Lifecycle Management Tool
+data write,Analysis Plan,Requirements Management Tool
+data read,Customer Requirements,Requirements Management Tool
+Tool Flow,Product Lifecycle Management Tool,Preliminary Analysis Tool
+Tool Flow,Preliminary Analysis Tool,Product Lifecycle Management Tool
+Tool Flow,Product Lifecycle Management Tool,Product Lifecycle Management Tool
+Tool Flow,Requirements Management Tool,Product Lifecycle Management Tool
+Tool Flow,Product Lifecycle Management Tool,Requirements Management Tool
+Capability Realises Requirement,Stakeholder Need 01 - Pillar A can to perform Preliminary Analysis,Capability Pillar Alpha
+Capability Realises Requirement,Stakeholder Need 02 - Pillar A can develop Requirements,Capability Pillar Alpha
+Capability Realises Requirement,Stakeholder Need 03 - Pillar A can manage requirements,Capability Pillar Alpha
+Capability Realises Requirement,Stakeholder Need 04 - Pillar A can conduct solution downselection,Capability Pillar Alpha
+Capability Realises Requirement,Stakeholder 06 - Pillar B can manage requirements,Capability Pillar Bravo
+Capability Realises Requirement,Stakeholder Need 05 - Pillar B can develop external geometry,Capability Pillar Bravo
+Requirement for Gate,Stakeholder Need 01 - Pillar A can to perform Preliminary Analysis,ASR  Gate
+Requirement for Gate,Stakeholder 06 - Pillar B can manage requirements,SFR Gate
+Requirement for Gate,Stakeholder Need 04 - Pillar A can conduct solution downselection,SFR Gate
+Requirement for Gate,Stakeholder Need 05 - Pillar B can develop external geometry,SFR Gate
+Requirement for Gate,Stakeholder Need 02 - Pillar A can develop Requirements,SRR  Gate
+Requirement for Gate,Stakeholder Need 03 - Pillar A can manage requirements,SRR  Gate
+Requirement Realises Function,Stakeholder Need 01 - Pillar A can to perform Preliminary Analysis,A - ASR - Initial Analysis
+Requirement Realises Function,Stakeholder Need 04 - Pillar A can conduct solution downselection,A - SFR - Solution Selection
+Requirement Realises Function,Stakeholder Need 02 - Pillar A can develop Requirements,A - SRR - Requirements Development
+Requirement Realises Function,Stakeholder Need 03 - Pillar A can manage requirements,A - SRR - Requirements Development
+Requirement Realises Function,Stakeholder Need 05 - Pillar B can develop external geometry,B - SFR - Develop External Geometry
+Requirement Realises Function,Stakeholder 06 - Pillar B can manage requirements,B - SRR - Architecture Definition
