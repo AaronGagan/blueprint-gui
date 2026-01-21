@@ -70,20 +70,50 @@ const BoxNode = ({ data, id, isConnectable }) => {
 
     return (
       <>
-        <Handle type="target" position={Position.Top} className="node-handle" id="top" isConnectable={isConnectable} />
-        <Handle type="source" position={Position.Top} className="node-handle" id="top" isConnectable={isConnectable} />
-        <Handle type="target" position={Position.Left} className="node-handle" id="left" isConnectable={isConnectable} />
-        <Handle type="source" position={Position.Left} className="node-handle" id="left" isConnectable={isConnectable} />
-        <Handle type="target" position={Position.Right} className="node-handle" id="right" isConnectable={isConnectable} />
-        <Handle type="source" position={Position.Right} className="node-handle" id="right" isConnectable={isConnectable} />
-        <Handle type="target" position={Position.Bottom} className="node-handle" id="bottom" isConnectable={isConnectable} />
-        <Handle type="source" position={Position.Bottom} className="node-handle" id="bottom" isConnectable={isConnectable} />
+        <Handle type="target" position={Position.Top} className="node-handle" id="top" isConnectable={isConnectable} style={{ left: '50%' }} />
+        <Handle type="source" position={Position.Top} className="node-handle" id="top" isConnectable={isConnectable} style={{ left: '50%' }} />
+        <Handle type="target" position={Position.Top} className="node-handle" id="top-left" isConnectable={isConnectable} style={{ left: '25%' }} />
+        <Handle type="source" position={Position.Top} className="node-handle" id="top-left" isConnectable={isConnectable} style={{ left: '25%' }} />
+        <Handle type="target" position={Position.Top} className="node-handle" id="top-right" isConnectable={isConnectable} style={{ left: '75%' }} />
+        <Handle type="source" position={Position.Top} className="node-handle" id="top-right" isConnectable={isConnectable} style={{ left: '75%' }} />
+        
+        <Handle type="target" position={Position.Left} className="node-handle" id="left" isConnectable={isConnectable} style={{ top: '50%' }} />
+        <Handle type="source" position={Position.Left} className="node-handle" id="left" isConnectable={isConnectable} style={{ top: '50%' }} />
+        <Handle type="target" position={Position.Left} className="node-handle" id="left-top" isConnectable={isConnectable} style={{ top: '25%' }} />
+        <Handle type="source" position={Position.Left} className="node-handle" id="left-top" isConnectable={isConnectable} style={{ top: '25%' }} />
+        <Handle type="target" position={Position.Left} className="node-handle" id="left-bottom" isConnectable={isConnectable} style={{ top: '75%' }} />
+        <Handle type="source" position={Position.Left} className="node-handle" id="left-bottom" isConnectable={isConnectable} style={{ top: '75%' }} />
+        
+        <Handle type="target" position={Position.Right} className="node-handle" id="right" isConnectable={isConnectable} style={{ top: '50%' }} />
+        <Handle type="source" position={Position.Right} className="node-handle" id="right" isConnectable={isConnectable} style={{ top: '50%' }} />
+        <Handle type="target" position={Position.Right} className="node-handle" id="right-top" isConnectable={isConnectable} style={{ top: '25%' }} />
+        <Handle type="source" position={Position.Right} className="node-handle" id="right-top" isConnectable={isConnectable} style={{ top: '25%' }} />
+        <Handle type="target" position={Position.Right} className="node-handle" id="right-bottom" isConnectable={isConnectable} style={{ top: '75%' }} />
+        <Handle type="source" position={Position.Right} className="node-handle" id="right-bottom" isConnectable={isConnectable} style={{ top: '75%' }} />
+        
+        <Handle type="target" position={Position.Bottom} className="node-handle" id="bottom" isConnectable={isConnectable} style={{ left: '50%' }} />
+        <Handle type="source" position={Position.Bottom} className="node-handle" id="bottom" isConnectable={isConnectable} style={{ left: '50%' }} />
+        <Handle type="target" position={Position.Bottom} className="node-handle" id="bottom-left" isConnectable={isConnectable} style={{ left: '25%' }} />
+        <Handle type="source" position={Position.Bottom} className="node-handle" id="bottom-left" isConnectable={isConnectable} style={{ left: '25%' }} />
+        <Handle type="target" position={Position.Bottom} className="node-handle" id="bottom-right" isConnectable={isConnectable} style={{ left: '75%' }} />
+        <Handle type="source" position={Position.Bottom} className="node-handle" id="bottom-right" isConnectable={isConnectable} style={{ left: '75%' }} />
       </>
     );
   };
 
+  const nodeClassName = data?.isOrphaned ? 'box-node orphaned-node' : 'box-node';
+  const handleClick = () => {
+    if (data?.clickable && id && data?.onNodeClick) {
+      data.onNodeClick(id);
+    }
+  };
+
   return (
-    <div className="box-node" style={{ cursor: 'pointer', userSelect: 'none', ...containerStyle }}>
+    <div 
+      className={nodeClassName} 
+      style={{ cursor: data?.clickable ? 'pointer' : 'default', userSelect: 'none', ...containerStyle }}
+      onClick={handleClick}
+    >
       {renderHandles()}
       {!isGroup && <span>{data.label}</span>}
     </div>
@@ -215,6 +245,98 @@ const DataFlowEdge = ({ id, sourceX, sourceY, targetX, targetY, sourcePosition, 
   );
 };
 
+// Landing page component
+const LandingPage = ({ onNavigate }) => {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      background: '#0d1117',
+      gap: '24px'
+    }}>
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '32px'
+      }}>
+        <h1 style={{
+          color: '#f0f6fc',
+          fontSize: '48px',
+          fontWeight: 'bold',
+          margin: '0 0 12px 0'
+        }}>
+          Blueprint Practice
+        </h1>
+        <p style={{
+          color: '#8b949e',
+          fontSize: '18px',
+          margin: 0
+        }}>
+          Select a view to explore
+        </p>
+      </div>
+
+      <div style={{
+        display: 'flex',
+        gap: '24px',
+        justifyContent: 'center'
+      }}>
+        <button
+          onClick={() => onNavigate('capabilities')}
+          style={{
+            padding: '16px 32px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            color: '#fff',
+            background: '#238636',
+            border: '2px solid #238636',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            minWidth: '200px'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = '#2ea043';
+            e.target.style.borderColor = '#2ea043';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = '#238636';
+            e.target.style.borderColor = '#238636';
+          }}
+        >
+          Capabilities
+        </button>
+
+        <button
+          onClick={() => onNavigate('toolsets')}
+          style={{
+            padding: '16px 32px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            color: '#61dafb',
+            background: 'transparent',
+            border: '2px solid #61dafb',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            minWidth: '200px'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = 'rgba(97, 218, 251, 0.1)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = 'transparent';
+          }}
+        >
+          Toolsets
+        </button>
+      </div>
+    </div>
+  );
+};
+
 // Comprehensive relationship data from CSV
 const relationshipData = {
   'Interfacing Capability': [
@@ -284,6 +406,22 @@ const relationshipData = {
     { element1: 'A - ASR - Initial Analysis', element2: 'Preliminary Analysis Tool' },
     { element1: 'A - ASR - Initial Analysis', element2: 'Product Lifecycle Management Tool' },
     { element1: 'A - ASR - Initial Analysis', element2: 'Requirements Management Tool' },
+  ],
+  'data write': [
+    { element1: 'Analysis Dataset Data Object', element2: 'Preliminary Analysis Tool' },
+    { element1: 'Analysis Plan', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Analysis Report Data Object', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Analysis Standards', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Customer Requirements', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Analysis Plan', element2: 'Requirements Management Tool' },
+  ],
+  'data read': [
+    { element1: 'Analysis Plan', element2: 'Preliminary Analysis Tool' },
+    { element1: 'Analysis Standards', element2: 'Preliminary Analysis Tool' },
+    { element1: 'Analysis Dataset Data Object', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Analysis Plan', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Analysis Report Data Object', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Customer Requirements', element2: 'Requirements Management Tool' },
   ],
   'Requirement Realises Function': [
     { element1: 'Stakeholder Need 01 - Pillar A can to perform Preliminary Analysis', element2: 'A - ASR - Initial Analysis' },
@@ -370,9 +508,30 @@ const relationshipData = {
     { element1: 'Design Requirements, B, SFR, [FINAL]', element2: 'Requirements Management Tool' },
     { element1: 'Requirements Set, A, SRR, [FINAL]', element2: 'Requirements Management Tool' },
   ],
+  'Tool Flow': [
+    { element1: 'Product Lifecycle Management Tool', element2: 'Preliminary Analysis Tool' },
+    { element1: 'Preliminary Analysis Tool', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Product Lifecycle Management Tool', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Requirements Management Tool', element2: 'Product Lifecycle Management Tool' },
+    { element1: 'Product Lifecycle Management Tool', element2: 'Requirements Management Tool' },
+  ],
 };
 
 // View generation functions for hierarchical navigation
+// Helper function to identify orphaned functions (no Functional Flow relationships)
+const getOrphanedFunctions = () => {
+  const functionalFlowRels = relationshipData['Functional Flow'] || [];
+  const functionsWithFlow = new Set();
+  
+  // Collect all functions that have at least one Functional Flow relationship
+  functionalFlowRels.forEach(rel => {
+    functionsWithFlow.add(rel.element1);
+    functionsWithFlow.add(rel.element2);
+  });
+  
+  return functionsWithFlow;
+};
+
 const generateCapabilityView = (onNodeClick) => {
   const pillars = ['Capability Pillar Alpha', 'Capability Pillar Bravo'];
   const interfacingRels = relationshipData['Interfacing Capability'];
@@ -381,7 +540,7 @@ const generateCapabilityView = (onNodeClick) => {
     id: pillar,
     type: 'boxNode',
     position: { x: idx * 300, y: 150 },
-    data: { label: pillar, id: pillar },
+    data: { label: pillar, id: pillar, clickable: true, onNodeClick },
     selected: false
   }));
 
@@ -427,39 +586,145 @@ const generateFunctionView = (selectedPillar, onNodeClick) => {
   const functionalFlowRels = relationshipData['Functional Flow']
     .filter(rel => functions.includes(rel.element1) && functions.includes(rel.element2));
 
-  const nodes = functions.map((func, idx) => ({
-    id: func,
-    type: 'boxNode',
-    position: { x: (idx % 3) * 350, y: Math.floor(idx / 3) * 150 },
-    data: { label: func, id: func },
-    selected: false
-  }));
+  // Identify orphaned functions
+  const functionsWithFlow = getOrphanedFunctions();
 
-  const edges = functionalFlowRels.map((rel, idx) => ({
-    id: `e-${idx}`,
-    source: rel.element1,
-    target: rel.element2,
-    sourceHandle: 'right',
-    targetHandle: 'left',
-    markerEnd: { type: MarkerType.ArrowClosed, color: '#ff9800' },
-    style: { stroke: '#ff9800', strokeWidth: 2 },
-  }));
+  // Group functions by gate type using 'Associated Gate to Function' relationship
+  const functionsByGate = {
+    'ASR': [],
+    'SRR': [],
+    'SFR': []
+  };
+
+  const gateRels = relationshipData['Associated Gate to Function'] || [];
+  
+  functions.forEach(func => {
+    // Find the associated gate for this function
+    const gateRel = gateRels.find(rel => rel.element1 === func);
+    if (gateRel) {
+      const gate = gateRel.element2;
+      if (gate.includes('ASR')) {
+        functionsByGate['ASR'].push(func);
+      } else if (gate.includes('SRR')) {
+        functionsByGate['SRR'].push(func);
+      } else if (gate.includes('SFR')) {
+        functionsByGate['SFR'].push(func);
+      }
+    }
+  });
+
+  // Create nodes organized in columns by gate type
+  const nodes = [];
+  const gateOrder = ['ASR', 'SRR', 'SFR'];
+  const columnSpacing = 400;
+  const rowSpacing = 150;
+  const startX = 100;
+  const startY = 100;
+  
+  gateOrder.forEach((gate, colIdx) => {
+    functionsByGate[gate].forEach((func, rowIdx) => {
+      nodes.push({
+        id: func,
+        type: 'boxNode',
+        position: { 
+          x: startX + colIdx * columnSpacing,
+          y: startY + rowIdx * rowSpacing
+        },
+        data: { label: func, id: func, isOrphaned: !functionsWithFlow.has(func), clickable: true, onNodeClick },
+        selected: false
+      });
+    });
+  });
+
+  const edges = [];
+  
+  // Track processed bidirectional pairs to avoid duplicates
+  const processedPairs = new Set();
+  
+  // Create a map of node positions for handle calculation
+  const nodePositions = {};
+  nodes.forEach(node => {
+    nodePositions[node.id] = node.position;
+  });
+  
+  functionalFlowRels.forEach((rel, idx) => {
+    // Check if this is a bidirectional relationship
+    const reverseFlow = functionalFlowRels.find(f => 
+      f.element1 === rel.element2 && f.element2 === rel.element1
+    );
+    
+    // Create a sorted pair key to identify this relationship
+    const pairKey = [rel.element1, rel.element2].sort().join('|||');
+    
+    // Skip if we've already processed this bidirectional pair
+    if (processedPairs.has(pairKey)) {
+      return;
+    }
+    processedPairs.add(pairKey);
+    
+    // Calculate correct handles based on node positions for shortest path
+    // Note: Functional Flow goes from element2 to element1
+    const sourcePos = nodePositions[rel.element2];
+    const targetPos = nodePositions[rel.element1];
+    
+    let sourceHandle = 'right';
+    let targetHandle = 'left';
+    
+    if (sourcePos && targetPos) {
+      const dx = Math.abs(targetPos.x - sourcePos.x);
+      const dy = Math.abs(targetPos.y - sourcePos.y);
+      
+      if (dy > dx) {
+        // Vertically aligned: use top/bottom
+        if (targetPos.y > sourcePos.y) {
+          sourceHandle = 'bottom';
+          targetHandle = 'top';
+        } else {
+          sourceHandle = 'top';
+          targetHandle = 'bottom';
+        }
+      } else {
+        // Horizontally aligned: use left/right
+        if (targetPos.x > sourcePos.x) {
+          sourceHandle = 'right';
+          targetHandle = 'left';
+        } else {
+          sourceHandle = 'left';
+          targetHandle = 'right';
+        }
+      }
+    }
+    
+    edges.push({
+      id: `e-${idx}`,
+      source: rel.element2,
+      target: rel.element1,
+      sourceHandle,
+      targetHandle,
+      markerEnd: { type: MarkerType.ArrowClosed, color: '#ff9800' },
+      markerStart: reverseFlow ? { type: MarkerType.ArrowClosed, color: '#ff9800' } : undefined,
+      style: { stroke: '#ff9800', strokeWidth: 2 },
+    });
+  });
 
   return { nodes, edges };
 };
 
-const generateFunctionDetailView = (selectedFunction, onNodeClick) => {
+const generateFunctionDetailView = (selectedFunction, onNodeClick, expandedDataObjects = []) => {
   const readRels = relationshipData['Read']
     .filter(rel => rel.element2 === selectedFunction);
   const writeRels = relationshipData['Write']
     .filter(rel => rel.element2 === selectedFunction);
+
+  // Track Y positions of every data node we render so nested expansions can anchor to the clicked node
+  const dataNodePositions = {};
 
   const nodes = [
     {
       id: selectedFunction,
       type: 'boxNode',
       position: { x: 500, y: 200 },
-      data: { label: selectedFunction, id: selectedFunction },
+      data: { label: selectedFunction, id: selectedFunction, clickable: true, onNodeClick },
       selected: false
     }
   ];
@@ -478,9 +743,11 @@ const generateFunctionDetailView = (selectedFunction, onNodeClick) => {
       id: `read-${rel.element1}`,
       type: 'boxNode',
       position: { x: 20, y: yPos },
-      data: { label: rel.element1, id: rel.element1 },
-      selected: false
+      data: { label: rel.element1, id: rel.element1, clickable: true, isDataObject: true, onNodeClick },
+      selected: expandedDataObjects.includes(`read-${rel.element1}`),
+      style: expandedDataObjects.includes(`read-${rel.element1}`) ? { background: '#d8f561' } : {}
     });
+    dataNodePositions[`read-${rel.element1}`] = { x: 20, y: yPos };
     yPos += 120;
   });
 
@@ -490,9 +757,11 @@ const generateFunctionDetailView = (selectedFunction, onNodeClick) => {
       id: `write-${rel.element1}`,
       type: 'boxNode',
       position: { x: 980, y: yPos },
-      data: { label: rel.element1, id: rel.element1 },
-      selected: false
+      data: { label: rel.element1, id: rel.element1, clickable: true, isDataObject: true, onNodeClick },
+      selected: expandedDataObjects.includes(`write-${rel.element1}`),
+      style: expandedDataObjects.includes(`write-${rel.element1}`) ? { background: '#d8f561' } : {}
     });
+    dataNodePositions[`write-${rel.element1}`] = { x: 980, y: yPos };
     yPos += 120;
   });
 
@@ -520,6 +789,148 @@ const generateFunctionDetailView = (selectedFunction, onNodeClick) => {
       markerEnd: { type: MarkerType.ArrowClosed, color: '#4caf50' },
       style: { stroke: '#4caf50', strokeWidth: 2 }
     });
+  });
+
+  // Handle data object expansions (cumulative)
+  expandedDataObjects.forEach((dataObjId) => {
+    const readMatch = dataObjId.match(/read-(.+)$/);
+    const writeMatch = dataObjId.match(/write-(.+)$/);
+    
+    if (readMatch) {
+      // Left side data object selected - find functions that WRITE to it
+      const dataObjectName = readMatch[1];
+      const writingFunctions = relationshipData['Write']
+        .filter(rel => rel.element1 === dataObjectName)
+        .map(rel => rel.element2);
+
+      // Anchor Y to the actual clicked data node position if available; otherwise fall back
+      const readIdx = readRels.findIndex(r => r.element1 === dataObjectName);
+      const anchorY = dataNodePositions[dataObjId]?.y ?? (readIdx >= 0 ? readStartY + readIdx * 120 : 200);
+      
+      // Add writing functions to the left of the data object
+      writingFunctions.forEach((func, idx) => {
+        const yOffset = (idx - writingFunctions.length / 2) * 120;
+        const funcY = anchorY + yOffset;
+        const funcNodeId = `expand-${dataObjId}-${func}`;
+
+        nodes.push({
+          id: funcNodeId,
+          type: 'boxNode',
+          position: { x: -350, y: funcY },
+          data: { label: func, id: func, clickable: false },
+          selected: expandedDataObjects.includes(funcNodeId)
+        });
+        
+        // Draw arrow from writing function to data object
+        edges.push({
+          id: `e-expand-${dataObjId}-${func}`,
+          source: funcNodeId,
+          target: dataObjId,
+          sourceHandle: 'right',
+          targetHandle: 'left',
+          markerEnd: { type: MarkerType.ArrowClosed, color: '#ff9800' },
+          style: { stroke: '#ff9800', strokeWidth: 2 }
+        });
+
+        // Also expand this function into its READ data objects
+        const funcReadRels = relationshipData['Read']
+          .filter(rel => rel.element2 === func);
+        if (funcReadRels.length > 0) {
+          const funcReadHeight = funcReadRels.length * 100;
+          const funcReadStartY = funcY - (funcReadHeight / 2) + 50;
+          funcReadRels.forEach((fRel, rIdx) => {
+            const dataY = funcReadStartY + rIdx * 100;
+            const dataNodeId = `${funcNodeId}-read-${fRel.element1}`;
+            nodes.push({
+              id: dataNodeId,
+              type: 'boxNode',
+              position: { x: -650, y: dataY },
+              data: { label: fRel.element1, id: fRel.element1, clickable: true, onNodeClick },
+              selected: expandedDataObjects.includes(dataNodeId)
+            });
+
+            dataNodePositions[dataNodeId] = { x: -650, y: dataY };
+
+            edges.push({
+              id: `e-${dataNodeId}`,
+              source: dataNodeId,
+              target: funcNodeId,
+              sourceHandle: 'right',
+              targetHandle: 'left',
+              markerEnd: { type: MarkerType.ArrowClosed, color: '#ff9800' },
+              style: { stroke: '#ff9800', strokeWidth: 2 }
+            });
+          });
+        }
+      });
+    } else if (writeMatch) {
+      // Right side data object selected - find functions that READ from it
+      const dataObjectName = writeMatch[1];
+      const readingFunctions = relationshipData['Read']
+        .filter(rel => rel.element1 === dataObjectName)
+        .map(rel => rel.element2);
+
+      // Anchor Y to the actual clicked data node position if available; otherwise fall back
+      const writeIdx = writeRels.findIndex(r => r.element1 === dataObjectName);
+      const anchorY = dataNodePositions[dataObjId]?.y ?? (writeIdx >= 0 ? writeStartY + writeIdx * 120 : 200);
+      
+      // Add reading functions to the right of the data object
+      readingFunctions.forEach((func, idx) => {
+        const yOffset = (idx - readingFunctions.length / 2) * 120;
+        const funcY = anchorY + yOffset;
+        const funcNodeId = `expand-${dataObjId}-${func}`;
+
+        nodes.push({
+          id: funcNodeId,
+          type: 'boxNode',
+          position: { x: 1330, y: funcY },
+          data: { label: func, id: func, clickable: false },
+          selected: expandedDataObjects.includes(funcNodeId)
+        });
+        
+        // Draw arrow from data object to reading function
+        edges.push({
+          id: `e-expand-${dataObjId}-${func}`,
+          source: dataObjId,
+          target: funcNodeId,
+          sourceHandle: 'right',
+          targetHandle: 'left',
+          markerEnd: { type: MarkerType.ArrowClosed, color: '#4caf50' },
+          style: { stroke: '#4caf50', strokeWidth: 2 }
+        });
+
+        // Also expand this function into its WRITE data objects
+        const funcWriteRels = relationshipData['Write']
+          .filter(rel => rel.element2 === func);
+        if (funcWriteRels.length > 0) {
+          const funcWriteHeight = funcWriteRels.length * 100;
+          const funcWriteStartY = funcY - (funcWriteHeight / 2) + 50;
+          funcWriteRels.forEach((fRel, wIdx) => {
+            const dataY = funcWriteStartY + wIdx * 100;
+            const dataNodeId = `${funcNodeId}-write-${fRel.element1}`;
+            nodes.push({
+              id: dataNodeId,
+              type: 'boxNode',
+              position: { x: 1640, y: dataY },
+              data: { label: fRel.element1, id: fRel.element1, clickable: true, onNodeClick },
+              selected: expandedDataObjects.includes(dataNodeId)
+            });
+
+            dataNodePositions[dataNodeId] = { x: 1640, y: dataY };
+
+            edges.push({
+              id: `e-${dataNodeId}`,
+              source: funcNodeId,
+              target: dataNodeId,
+              sourceHandle: 'right',
+              targetHandle: 'left',
+              markerEnd: { type: MarkerType.ArrowClosed, color: '#4caf50' },
+              style: { stroke: '#4caf50', strokeWidth: 2 }
+            });
+          });
+        }
+      });
+    }
   });
 
   // Collect tools used by read data objects
@@ -686,7 +1097,7 @@ const generateFunctionDetailView = (selectedFunction, onNodeClick) => {
 };
 
 // Generate view showing all functions with functional flows and data objects
-const generateFunctionalFlowView = () => {
+const generateFunctionalFlowView = (onNodeClick) => {
   // Get all unique functions from Realises Capability relationships
   const allFunctions = new Set();
   relationshipData['Realises Capability'].forEach(rel => {
@@ -712,6 +1123,9 @@ const generateFunctionalFlowView = () => {
     }
   });
   
+  // Identify orphaned functions
+  const functionsWithFlow = getOrphanedFunctions();
+
   // Create nodes organized in columns by gate type
   const nodes = [];
   const gateOrder = ['ASR', 'SRR', 'SFR'];
@@ -729,7 +1143,7 @@ const generateFunctionalFlowView = () => {
           x: startX + colIdx * columnSpacing,
           y: startY + rowIdx * rowSpacing
         },
-        data: { label: func, id: func },
+        data: { label: func, id: func, isOrphaned: !functionsWithFlow.has(func), clickable: true, onNodeClick },
         selected: false
       });
     });
@@ -860,12 +1274,374 @@ const generateFunctionalFlowView = () => {
   return { nodes, edges };
 };
 
+// Generate view showing all tools with Tool Flow relationships
+const generateToolsetView = () => {
+  // Get all unique tools from Tool Flow relationships
+  const allTools = new Set();
+  if (relationshipData['Tool Flow']) {
+    relationshipData['Tool Flow'].forEach(rel => {
+      allTools.add(rel.element1);
+      allTools.add(rel.element2);
+    });
+  }
+  
+  const toolsArray = Array.from(allTools);
+  
+  // Create nodes for all tools in triangular formation
+  const nodes = [];
+  const centerX = 600;
+  const centerY = 300;
+  const radius = 250; // Distance from center
+  
+  // Arrange tools in a circle/triangle based on count
+  toolsArray.forEach((tool, idx) => {
+    const angle = (idx * (2 * Math.PI / toolsArray.length)) - (Math.PI / 2); // Start from top
+    const x = centerX + radius * Math.cos(angle);
+    const y = centerY + radius * Math.sin(angle);
+    
+    nodes.push({
+      id: tool,
+      type: 'boxNode',
+      position: { x, y },
+      data: { label: tool, id: tool },
+      selected: false
+    });
+  });
+  
+  // Create a map of tool positions for handle calculation
+  const toolPositions = {};
+  nodes.forEach(node => {
+    toolPositions[node.id] = node.position;
+  });
+  
+  // Process Tool Flow relationships to create edges
+  const edges = [];
+  const processedPairs = new Set();
+  const connectionCounts = {}; // Track how many connections each node has per side
+  
+  if (relationshipData['Tool Flow']) {
+    relationshipData['Tool Flow'].forEach((flow, idx) => {
+      const source = flow.element2;  // Element 2 -> Element 1
+      const target = flow.element1;
+      
+      // Check for self-loop (same tool)
+      if (source === target) {
+        // Self-loop: create a looped arrow from top-right to right-top handles with extra curve
+        edges.push({
+          id: `e-self-${idx}`,
+          source: source,
+          target: source,
+          sourceHandle: 'top-right',
+          targetHandle: 'right-top',
+          type: 'default',
+          markerEnd: { type: MarkerType.ArrowClosed, color: '#ff9800' },
+          style: { stroke: '#ff9800', strokeWidth: 2 },
+          pathOptions: { offset: 100, curvature: 1 }
+        });
+        return;
+      }
+      
+      // Check if this is bidirectional
+      const reverseFlow = relationshipData['Tool Flow'].find(f => 
+        f.element1 === target && f.element2 === source
+      );
+      
+      // Create a sorted pair key to avoid duplicate bidirectional edges
+      const pairKey = [source, target].sort().join('|||');
+      
+      if (processedPairs.has(pairKey)) {
+        return;
+      }
+      processedPairs.add(pairKey);
+      
+      // Determine correct handles based on positions and use different handles to avoid overlap
+      const sourcePos = toolPositions[source];
+      const targetPos = toolPositions[target];
+      
+      let sourceHandle = 'right';
+      let targetHandle = 'left';
+      
+      if (sourcePos && targetPos) {
+        const dx = targetPos.x - sourcePos.x;
+        const dy = targetPos.y - sourcePos.y;
+        const absDx = Math.abs(dx);
+        const absDy = Math.abs(dy);
+        
+        // Determine base direction
+        let baseSrcHandle = '';
+        let baseTgtHandle = '';
+        
+        if (absDy > absDx) {
+          // Vertically aligned
+          if (dy > 0) {
+            baseSrcHandle = 'bottom';
+            baseTgtHandle = 'top';
+          } else {
+            baseSrcHandle = 'top';
+            baseTgtHandle = 'bottom';
+          }
+        } else {
+          // Horizontally aligned
+          if (dx > 0) {
+            baseSrcHandle = 'right';
+            baseTgtHandle = 'left';
+          } else {
+            baseSrcHandle = 'left';
+            baseTgtHandle = 'right';
+          }
+        }
+        
+        // Track connections per handle and use variants
+        const srcKey = `${source}-${baseSrcHandle}`;
+        const tgtKey = `${target}-${baseTgtHandle}`;
+        
+        connectionCounts[srcKey] = (connectionCounts[srcKey] || 0) + 1;
+        connectionCounts[tgtKey] = (connectionCounts[tgtKey] || 0) + 1;
+        
+        // Use different handle positions based on connection count
+        const handleVariants = ['', '-left', '-right']; // for top/bottom
+        const handleVariantsV = ['', '-top', '-bottom']; // for left/right
+        
+        const srcCount = connectionCounts[srcKey];
+        const tgtCount = connectionCounts[tgtKey];
+        
+        if (baseSrcHandle === 'top' || baseSrcHandle === 'bottom') {
+          const srcVariant = handleVariants[(srcCount - 1) % handleVariants.length];
+          const tgtVariant = handleVariants[(tgtCount - 1) % handleVariants.length];
+          sourceHandle = baseSrcHandle + srcVariant;
+          targetHandle = baseTgtHandle + tgtVariant;
+        } else {
+          const srcVariant = handleVariantsV[(srcCount - 1) % handleVariantsV.length];
+          const tgtVariant = handleVariantsV[(tgtCount - 1) % handleVariantsV.length];
+          sourceHandle = baseSrcHandle + srcVariant;
+          targetHandle = baseTgtHandle + tgtVariant;
+        }
+      }
+      
+      edges.push({
+        id: `e-tool-${idx}`,
+        source: source,
+        target: target,
+        sourceHandle,
+        targetHandle,
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#61dafb' },
+        markerStart: reverseFlow ? { type: MarkerType.ArrowClosed, color: '#61dafb' } : undefined,
+        style: { stroke: '#61dafb', strokeWidth: 2 }
+      });
+    });
+  }
+  
+  return { nodes, edges };
+};
+
+// Generate Tool Data Flow view - Functions with tools branching downward
+const generateToolDataFlowView = () => {
+  const nodes = [];
+  const edges = [];
+
+  // Get Tool Services Function relationships (element1 = function, element2 = tool)
+  const toolServiceRels = relationshipData['Tool Services Function'] || [];
+  
+  // Group tools by function
+  const functionToolMap = {};
+  toolServiceRels.forEach(rel => {
+    const func = rel.element1;
+    const tool = rel.element2;
+    if (!functionToolMap[func]) {
+      functionToolMap[func] = [];
+    }
+    functionToolMap[func].push(tool);
+  });
+
+  const functions = Object.keys(functionToolMap);
+  
+  // Layout configuration
+  const functionSpacing = 800; // Horizontal spacing between functions
+  const toolSpacing = 380; // Horizontal spacing between tools (ensures no overlap)
+  const functionY = 100; // Y position for all functions
+  const toolY = 300; // Y position for all tools
+  const startX = 400;
+
+  // Position functions horizontally at the top
+  functions.forEach((func, funcIdx) => {
+    const funcX = startX + funcIdx * functionSpacing;
+    
+    nodes.push({
+      id: `func-${func}`,
+      type: 'boxNode',
+      position: { x: funcX, y: functionY },
+      data: { label: func, id: func, clickable: false },
+      selected: false
+    });
+
+    const tools = functionToolMap[func];
+    const toolCount = tools.length;
+    
+    // Position tools horizontally centered under the function
+    // For odd count, middle tool aligns with function; for even, gap between middle two tools aligns with function
+    tools.forEach((tool, toolIdx) => {
+      const toolX = funcX + (toolIdx - (toolCount - 1) / 2) * toolSpacing;
+      const toolId = `tool-${func}-${tool}`;
+      
+      nodes.push({
+        id: toolId,
+        type: 'boxNode',
+        position: { x: toolX, y: toolY },
+        data: { label: tool, id: tool, clickable: false },
+        selected: false
+      });
+
+      // Draw arrow from function to tool
+      edges.push({
+        id: `e-${func}-${tool}`,
+        source: `func-${func}`,
+        target: toolId,
+        sourceHandle: 'bottom',
+        targetHandle: 'top',
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#61dafb' },
+        style: { stroke: '#61dafb', strokeWidth: 2 }
+      });
+    });
+  });
+
+  // Create tool-to-tool edges based on data flow (Write -> Read relationships)
+  const writeRels = relationshipData['data write'] || [];
+  const readRels = relationshipData['data read'] || [];
+  
+  // Build maps: data object -> tools that write to it, data object -> tools that read from it
+  const dataWriteMap = {}; // dataObject -> [tools]
+  const dataReadMap = {}; // dataObject -> [tools]
+  
+  writeRels.forEach(rel => {
+    const dataObject = rel.element1;
+    const tool = rel.element2;
+    if (!dataWriteMap[dataObject]) dataWriteMap[dataObject] = [];
+    dataWriteMap[dataObject].push(tool);
+  });
+  
+  readRels.forEach(rel => {
+    const dataObject = rel.element1;
+    const tool = rel.element2;
+    if (!dataReadMap[dataObject]) dataReadMap[dataObject] = [];
+    dataReadMap[dataObject].push(tool);
+  });
+  
+  // Find all tool pairs that share data objects (writer -> reader)
+  const toolDataFlows = {}; // "toolA->toolB" -> [dataObjects]
+  
+  Object.keys(dataWriteMap).forEach(dataObject => {
+    const writers = dataWriteMap[dataObject] || [];
+    const readers = dataReadMap[dataObject] || [];
+    
+    writers.forEach(writerTool => {
+      readers.forEach(readerTool => {
+        if (writerTool !== readerTool) {
+          const key = `${writerTool}->${readerTool}`;
+          if (!toolDataFlows[key]) toolDataFlows[key] = [];
+          toolDataFlows[key].push(dataObject);
+        }
+      });
+    });
+  });
+  
+  // Build a map of tool positions to check adjacency
+  const toolPositions = {};
+  functions.forEach((func) => {
+    const tools = functionToolMap[func];
+    tools.forEach((tool, idx) => {
+      toolPositions[tool] = { func, index: idx, total: tools.length };
+    });
+  });
+  
+  const areAdjacent = (tool1, tool2) => {
+    const pos1 = toolPositions[tool1];
+    const pos2 = toolPositions[tool2];
+    
+    // Adjacent if same function and indices differ by 1
+    return pos1.func === pos2.func && Math.abs(pos1.index - pos2.index) === 1;
+  };
+  
+  // Track processed pairs to handle bidirectional relationships
+  const processedPairs = new Set();
+  
+  // Create edges for tool data flows
+  Object.keys(toolDataFlows).forEach((key, idx) => {
+    const [sourceTool, targetTool] = key.split('->');
+    const reverseKey = `${targetTool}->${sourceTool}`;
+    
+    // Skip if we already processed the reverse direction
+    if (processedPairs.has(reverseKey)) {
+      return;
+    }
+    processedPairs.add(key);
+    
+    const dataObjects = toolDataFlows[key];
+    const reverseDataObjects = toolDataFlows[reverseKey] || [];
+    const sourceNodeId = `tool-${functions.find(f => functionToolMap[f].includes(sourceTool))}-${sourceTool}`;
+    const targetNodeId = `tool-${functions.find(f => functionToolMap[f].includes(targetTool))}-${targetTool}`;
+    
+    // Check if bidirectional
+    const isBidirectional = reverseDataObjects.length > 0;
+    
+    // Combine data objects for bidirectional relationships
+    const allDataObjects = [
+      ...dataObjects.map(obj => ({ name: obj, from: sourceTool, to: targetTool })),
+      ...reverseDataObjects.map(obj => ({ name: obj, from: targetTool, to: sourceTool }))
+    ];
+    
+    // Check if adjacent
+    const adjacent = areAdjacent(sourceTool, targetTool);
+    
+    let sourceHandle, targetHandle;
+    
+    if (adjacent) {
+      // Use left/right handles for adjacent tools
+      const sourcePos = toolPositions[sourceTool];
+      const targetPos = toolPositions[targetTool];
+      
+      if (sourcePos.index < targetPos.index) {
+        // Source is to the left of target
+        sourceHandle = 'right';
+        targetHandle = 'left';
+      } else {
+        // Source is to the right of target
+        sourceHandle = 'left';
+        targetHandle = 'right';
+      }
+    } else {
+      // Use bottom handles for non-adjacent tools
+      sourceHandle = 'bottom';
+      targetHandle = 'bottom';
+    }
+    
+    edges.push({
+      id: `e-data-flow-${idx}`,
+      source: sourceNodeId,
+      target: targetNodeId,
+      type: 'dataFlow',
+      sourceHandle: sourceHandle,
+      targetHandle: targetHandle,
+      markerEnd: { type: MarkerType.ArrowClosed, color: '#4caf50' },
+      markerStart: isBidirectional ? { type: MarkerType.ArrowClosed, color: '#4caf50' } : undefined,
+      style: { stroke: '#4caf50', strokeWidth: 2 },
+      data: {
+        dataObjects: allDataObjects
+      }
+    });
+  });
+
+  return { nodes, edges };
+};
+
 function App() {
-  const [currentView, setCurrentView] = useState('hierarchical'); // 'hierarchical' or 'functionalFlow'
+  const [currentPage, setCurrentPage] = useState('landing'); // 'landing', 'capabilities', 'toolsets', 'orphaned'
+  const [currentView, setCurrentView] = useState('hierarchical'); // 'hierarchical', 'functionalFlow', or 'toolDataFlow'
   const [selectedPillar, setSelectedPillar] = useState(null);
   const [selectedFunction, setSelectedFunction] = useState(null);
   const [attributePanelOpen, setAttributePanelOpen] = useState(false);
   const [attributeNode, setAttributeNode] = useState(null);
+  const [showHandles, setShowHandles] = useState(false); // Toggle for handle visibility
+  const [expandedDataObjects, setExpandedDataObjects] = useState([]); // Track selected data objects for expansion (supports nested)
   const isHandlingClickRef = useRef(false);
   const reactFlowInstanceRef = useRef(null);
 
@@ -877,11 +1653,35 @@ function App() {
       }, 50);
       return () => clearTimeout(timer);
     }
-  }, [currentView, selectedPillar, selectedFunction]);
+  }, [currentView, selectedPillar, selectedFunction, expandedDataObjects]);
+
+  // Spacebar listener for fit-view
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === 'Space' || e.key === ' ') {
+        e.preventDefault();
+        if (reactFlowInstanceRef.current) {
+          reactFlowInstanceRef.current.fitView({ padding: 0.2, duration: 300 });
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleNodeClick = useCallback((nodeId) => {
-    // Ignore clicks on data objects and tools
-    if (nodeId.startsWith('read-') || nodeId.startsWith('write-')) {
+    // Handle data object selection in detail view (support nested ids containing -read-/-write-)
+    if (nodeId.startsWith('read-') || nodeId.startsWith('write-') || nodeId.includes('-read-') || nodeId.includes('-write-')) {
+      setExpandedDataObjects((prev) => {
+        const exists = prev.includes(nodeId);
+        return exists ? prev.filter(id => id !== nodeId) : [...prev, nodeId];
+      });
+      return;
+    }
+
+    // Ignore clicks on tools and other special nodes
+    if (nodeId.startsWith('read-tool-') || nodeId.startsWith('write-tool-') || nodeId.startsWith('separator-') || nodeId.startsWith('label-')) {
       return;
     }
 
@@ -909,7 +1709,9 @@ function App() {
   }, [currentView, selectedPillar, selectedFunction]);
 
   const handleBack = () => {
-    if (selectedFunction) {
+    if (expandedDataObjects.length > 0) {
+      setExpandedDataObjects([]);
+    } else if (selectedFunction) {
       setSelectedFunction(null);
     } else if (selectedPillar) {
       setSelectedPillar(null);
@@ -918,20 +1720,27 @@ function App() {
 
   // Generate nodes and edges based on current view level
   let { nodes: generatedNodes, edges: generatedEdges } = useMemo(() => {
-    // If a function is selected, show its detail view (works in both views)
+    // If a function is selected (in any view), show its detail view
     if (selectedFunction) {
-      return generateFunctionDetailView(selectedFunction, handleNodeClick);
+      return generateFunctionDetailView(selectedFunction, handleNodeClick, expandedDataObjects);
     }
     
-    // Otherwise, show the appropriate high-level view
+    // Otherwise, show the appropriate high-level view based on currentView
+    if (currentView === 'toolDataFlow') {
+      return generateToolDataFlowView();
+    }
+    
     if (currentView === 'functionalFlow') {
-      return generateFunctionalFlowView();
-    } else if (selectedPillar) {
+      return generateFunctionalFlowView(handleNodeClick);
+    }
+    
+    // In Hierarchical view:
+    if (selectedPillar) {
       return generateFunctionView(selectedPillar, handleNodeClick);
     } else {
       return generateCapabilityView(handleNodeClick);
     }
-  }, [currentView, selectedPillar, selectedFunction, handleNodeClick]);
+  }, [currentView, selectedPillar, selectedFunction, expandedDataObjects, handleNodeClick]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(generatedNodes);
 
@@ -1119,20 +1928,175 @@ function App() {
   if (selectedPillar) breadcrumbs.push(selectedPillar);
   if (selectedFunction) breadcrumbs.push(selectedFunction);
 
+  // Handle page navigation
+  const handlePageNavigation = (page) => {
+    setCurrentPage(page);
+    // Reset any internal state when navigating to a new page
+    setSelectedPillar(null);
+    setSelectedFunction(null);
+    setAttributePanelOpen(false);
+    setAttributeNode(null);
+  };
+
+  // Show landing page
+  if (currentPage === 'landing') {
+    return <LandingPage onNavigate={handlePageNavigation} />;
+  }
+
+  // Show toolsets diagram
+  if (currentPage === 'toolsets') {
+    const { nodes: toolsetNodesData, edges: toolsetEdgesData } = generateToolsetView();
+    
+    return (
+      <div className="app">
+        <div style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+          zIndex: 100,
+          display: 'flex',
+          gap: '12px'
+        }}>
+          <button
+            onClick={() => setShowHandles(!showHandles)}
+            style={{
+              padding: '8px 16px',
+              background: showHandles ? '#61dafb' : '#333',
+              color: showHandles ? '#0b0f16' : '#fff',
+              border: '2px solid #61dafb',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold'
+            }}
+          >
+            {showHandles ? 'Hide Handles' : 'Show Handles'}
+          </button>
+          <button
+            onClick={() => handlePageNavigation('landing')}
+            style={{
+              padding: '8px 16px',
+              background: '#238636',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold'
+            }}
+          >
+            ← Back to Home
+          </button>
+        </div>
+        <header className="app-header">
+          <h1>Toolsets - Tool Flow Relationships</h1>
+        </header>
+        <div className="flow-container">
+          <ReactFlow
+            nodes={toolsetNodesData}
+            edges={toolsetEdgesData}
+            onInit={(instance) => { reactFlowInstanceRef.current = instance; }}
+            fitView
+            nodesDraggable={false}
+            nodeTypes={nodeTypes}
+            edgeTypes={edgeTypes}
+            style={{ width: '100%', height: '100%' }}
+            className={showHandles ? '' : 'hide-handles'}
+          >
+            <Background gap={18} color="#444" />
+            <Controls />
+          </ReactFlow>
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'orphaned') {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        background: '#0d1117',
+        color: '#8b949e'
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+          zIndex: 100,
+          display: 'flex',
+          gap: '12px'
+        }}>
+          <button
+            onClick={() => setShowHandles(!showHandles)}
+            style={{
+              padding: '8px 16px',
+              background: showHandles ? '#61dafb' : '#333',
+              color: showHandles ? '#0b0f16' : '#fff',
+              border: '2px solid #61dafb',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold'
+            }}
+          >
+            {showHandles ? 'Hide Handles' : 'Show Handles'}
+          </button>
+          <button
+            onClick={() => handlePageNavigation('landing')}
+            style={{
+              padding: '8px 16px',
+              background: '#238636',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold'
+            }}
+          >
+            ← Back to Home
+          </button>
+        </div>
+        <h1 style={{ fontSize: '36px', marginBottom: '12px', color: '#f0f6fc' }}>Orphaned Items</h1>
+        <p>Coming soon...</p>
+      </div>
+    );
+  }
+
+  // Show capabilities diagram (default view)
   return (
     <div className="app">
-      <div className="tab-navigation">
-        <button 
-          className={`tab-button ${currentView === 'hierarchical' ? 'active' : ''}`}
-          onClick={() => setCurrentView('hierarchical')}
+      <div style={{
+        position: 'absolute',
+        top: '20px',
+        right: '20px',
+        zIndex: 100
+      }}>
+        <button
+          onClick={() => handlePageNavigation('landing')}
+          title="Back to Home"
+          style={{
+            padding: '6px 10px',
+            background: '#238636',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '36px',
+            height: '36px'
+          }}
         >
-          Hierarchical View
-        </button>
-        <button 
-          className={`tab-button ${currentView === 'functionalFlow' ? 'active' : ''}`}
-          onClick={() => setCurrentView('functionalFlow')}
-        >
-          Functional Flow View
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
         </button>
       </div>
       <header className="app-header">
@@ -1158,13 +2122,85 @@ function App() {
               ))}
             </div>
           </div>
+        </div>
+      </header>
+      <div className="tab-navigation">
+        <button 
+          className={`tab-button ${currentView === 'hierarchical' ? 'active' : ''}`}
+          onClick={() => {
+            setCurrentView('hierarchical');
+            setSelectedFunction(null);
+          }}
+        >
+          Hierarchical View
+        </button>
+        <button 
+          className={`tab-button ${currentView === 'functionalFlow' ? 'active' : ''}`}
+          onClick={() => {
+            setCurrentView('functionalFlow');
+            setSelectedFunction(null);
+          }}
+        >
+          Functional Flow View
+        </button>
+        <button 
+          className={`tab-button ${currentView === 'toolDataFlow' ? 'active' : ''}`}
+          onClick={() => {
+            setCurrentView('toolDataFlow');
+            setSelectedFunction(null);
+          }}
+        >
+          Tool Data Flow
+        </button>
+        <div style={{
+          marginLeft: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px'
+        }}>
           {(selectedPillar || selectedFunction) && (
             <button onClick={handleBack} className="back-button">
               ← Back
             </button>
           )}
+          <label style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            cursor: 'pointer',
+            fontSize: '14px',
+            color: '#c9d1d9'
+          }}>
+            <div
+              onClick={() => setShowHandles(!showHandles)}
+              style={{
+                width: '50px',
+                height: '28px',
+                background: showHandles ? '#34C759' : '#8B949E',
+                borderRadius: '14px',
+                padding: '2px',
+                display: 'flex',
+                alignItems: 'center',
+                transition: 'background 0.3s ease',
+                cursor: 'pointer',
+                flexShrink: 0
+              }}
+            >
+              <div
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  background: '#fff',
+                  borderRadius: '12px',
+                  transform: showHandles ? 'translateX(22px)' : 'translateX(0)',
+                  transition: 'transform 0.3s ease'
+                }}
+              />
+            </div>
+            Show Handles
+          </label>
         </div>
-      </header>
+      </div>
 
       <div className="flow-container">
         <ReactFlow
@@ -1178,10 +2214,53 @@ function App() {
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
           style={{ width: '100%', height: '100%' }}
+          className={showHandles ? '' : 'hide-handles'}
         >
           <Background gap={18} color="#444" />
           <Controls />
         </ReactFlow>
+        {/* Legend/Key on canvas */}
+        <div style={{
+          position: 'absolute',
+          bottom: '20px',
+          right: '20px',
+          background: 'rgba(13, 17, 23, 0.95)',
+          border: '1px solid #444',
+          borderRadius: '8px',
+          padding: '12px 16px',
+          fontSize: '12px',
+          color: '#9ba3af',
+          pointerEvents: 'auto',
+          zIndex: 10,
+          backdropFilter: 'blur(10px)'
+        }}>
+          <div style={{ marginBottom: '8px', fontWeight: '600', color: '#c9d1d9', fontSize: '11px', textTransform: 'uppercase' }}>Legend</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{
+                width: '16px',
+                height: '16px',
+                border: '2px solid #61dafb',
+                borderRadius: '3px',
+                background: '#d8ecff',
+                flexShrink: 0
+              }}></div>
+              <span>Normal Function</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{
+                width: '16px',
+                height: '16px',
+                border: '2px solid #ff6b6b',
+                borderRadius: '3px',
+                background: '#ffe5e5',
+                boxShadow: '0 0 6px rgba(255, 107, 107, 0.4)',
+                flexShrink: 0
+              }}></div>
+              <span>Orphaned Function</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Attribute Panel */}

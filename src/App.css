@@ -101,6 +101,23 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  cursor: pointer;
+}
+
+.orphaned-node {
+  border: 3px solid #ff6b6b;
+  background: #ffe5e5;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.4), 0 8px 18px rgba(0, 0, 0, 0.25);
+  animation: orphan-pulse 2s ease-in-out infinite;
+}
+
+@keyframes orphan-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.4), 0 8px 18px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 107, 107, 0.6), 0 8px 18px rgba(0, 0, 0, 0.25);
+  }
 }
 
 .node-handle {
@@ -255,4 +272,10 @@ body {
 .relationship-field strong {
   color: #61dafb;
   margin-right: 6px;
+}
+
+/* Hide handles when toggle is off */
+.hide-handles .react-flow__handle {
+  opacity: 0;
+  pointer-events: none;
 }
